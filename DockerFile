@@ -1,0 +1,15 @@
+# Use official Python image as the base image
+FROM python:3.8-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Python script and dataset into the container
+COPY your_script.py random_paragraphs.txt /app/
+
+# Install NLTK and download necessary resources
+RUN pip install nltk && \
+    python -m nltk.downloader stopwords punkt
+
+# Run the Python script
+CMD ["python", "your_script.py"]
